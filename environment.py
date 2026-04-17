@@ -162,6 +162,13 @@ class SafeNavEnv(gym.Env):
             pygame.init()
             pygame.display.set_caption(f"CMDP Safe Navigation | LRTA*")
             self.window = pygame.display.set_mode((self.window_width, self.window_height))
+            
+            import platform
+            if platform.system() == 'Windows':
+                import ctypes
+                hwnd = pygame.display.get_wm_info()["window"]
+                ctypes.windll.user32.SetForegroundWindow(hwnd)
+                
             self.clock = pygame.time.Clock()
             self.font = pygame.font.SysFont("Segoe UI", 24)
             self.title_font = pygame.font.SysFont("Segoe UI", 32, bold=True)
