@@ -167,8 +167,9 @@ class SafeNavEnv(gym.Env):
             if platform.system() == 'Windows':
                 import ctypes
                 hwnd = pygame.display.get_wm_info()["window"]
+                ctypes.windll.user32.SetWindowPos(hwnd, -1, 0, 0, 0, 0, 3)
+                ctypes.windll.user32.SetWindowPos(hwnd, -2, 0, 0, 0, 0, 3)
                 ctypes.windll.user32.SetForegroundWindow(hwnd)
-                
             self.clock = pygame.time.Clock()
             self.font = pygame.font.SysFont("Segoe UI", 24)
             self.title_font = pygame.font.SysFont("Segoe UI", 32, bold=True)
